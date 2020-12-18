@@ -5,6 +5,10 @@ import config from './config'
 export class AddNew extends Component {
     static contextType = RouteContext
 
+    handleClickCancel = () => {
+        this.props.history.push('/')
+}
+
     render() {
         const handleSubmit = (event) => {
             const newRoute = {
@@ -15,7 +19,7 @@ export class AddNew extends Component {
                 route_type: event.target['type'].value,
                 route_description: event.target['new-route-description'].value
             }
-            fetch(`${config.API_ENDPOINT}/route`, {
+            fetch(`${config.API_ENDPOINT}/routes`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -73,13 +77,13 @@ export class AddNew extends Component {
                 id='new-route-distance'
                 name='new-route-distance' />
                 <br />
-                <label for="">Description</label>
+                <label htmlFor="">Description</label>
                 <textarea type="text"
                 id='new-route-description'
                 name='new-route-description'></textarea>
                 <br />
                 <button className='buttons'>Submit</button>
-                <button className='buttons'>Cancel</button>
+                <button onClick={this.handleClickCancel} className='buttons'>Cancel</button>
             </form>
         </section>
             </div>
