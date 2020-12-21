@@ -24,18 +24,6 @@ export class Nav extends Component {
                     <li>_help</li>
                 </Link>
 
-                <Link 
-                    to='/register' 
-                    style={{textDecoration: 'none', color: 'inherit'}}>
-                    <li>_register</li>
-                </Link>
-
-                <Link 
-                    to='/login' 
-                    style={{textDecoration: 'none', color: 'inherit'}}>
-                    <li>_login</li>
-                </Link>
-
             </ul>
         )
     }

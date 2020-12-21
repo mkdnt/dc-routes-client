@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+import RouteContext from './RouteContext'
 import Route from './Route'
 import Filters from './Filters'
-import RouteContext from './RouteContext'
 
 export class RoutesList extends Component {
     static defaultProps = {
@@ -13,23 +13,20 @@ export class RoutesList extends Component {
     static contextType = RouteContext;
 
     render() {
-       const { routes=[] } = this.context
-       console.log(routes)
+
         return (
             <div>
                 <h2>Routes</h2>
                 <Filters />
                 <ul>
-                    {routes.map(route => 
+                    {this.context.routes.map(route => 
                     <li key={route.id}>
                         <Route 
                         id={route.id}
                         name={route.route_name}
                         area={route.dc_area}
                         distance={route.distance}
-                        difficulty={route.difficulty}
                         type={route.route_type}
-                        description={route.description}
                         />
                     </li>    
                     )}

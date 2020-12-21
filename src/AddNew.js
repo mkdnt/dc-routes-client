@@ -6,7 +6,7 @@ export class AddNew extends Component {
     static contextType = RouteContext
 
     handleClickCancel = () => {
-        this.props.history.push('/')
+        this.props.history.push('/routes')
 }
 
     render() {
@@ -19,6 +19,7 @@ export class AddNew extends Component {
                 route_type: event.target['type'].value,
                 route_description: event.target['new-route-description'].value
             }
+            console.log(newRoute)
             fetch(`${config.API_ENDPOINT}/routes`, {
                 method: 'POST',
                 headers: {
@@ -33,6 +34,7 @@ export class AddNew extends Component {
                 })
                 .then(route => {
                     this.context.addRoute(route)
+                    console.log(route)
                 })
                 .catch(error => {
                     console.error({error})
