@@ -11,20 +11,20 @@ import RoutesList from './RoutesList'
 import RouteItem from './RouteItem'
 import Footer from './Footer'
 import './App.css'
-import EditForm from './EditForm';
+import Error from './Error'
 
 export class App extends Component {
   state = {
     routes: [],
     addRoute: this.handleAddRoute,
-    // editRoute: this.handleEditRoute,
-    // deleteRoute: this.handleDeleteRoute
+    editRoute: this.handleEditRoute,
+    deleteRoute: this.handleDeleteRoute
   };
 
   componentDidMount() {
         console.log('inside ComponentDidMount')
 
-            fetch(`${config.API_ENDPOINT}/routes`, {
+            fetch(`${config.API_ENDPOINT}/route`, {
               method: 'GET',
               headers: {
                 'content-type': 'application/json'
@@ -58,15 +58,25 @@ export class App extends Component {
     })
   }
 
+  handleDeleteRoute = routeId => {
+    console.log('inside deleteRoute')
+    const newRoutes = this.state.routes.filter(route => route.id !== routeId)
+    this.setState({
+      routes: newRoutes
+    })
+  }
+
+
   render() {
     const value = {
       routes: this.state.routes,
-      addRoute: this.state.handleAddRoute,
-      // editRoute: this.state.handleEditRoute,
-      // deleteRoute: this.state.handleDeleteRoute
+      addRoute: this.handleAddRoute,
+      editRoute: this.handleEditRoute,
+      deleteRoute: this.handleDeleteRoute
     }
 
     return (
+      <Error>
       <RouteContext.Provider value={value}>
       <div className='app'>
         <header>
@@ -78,19 +88,20 @@ export class App extends Component {
         <main>
           <Switch>
             <Route exact path='/' component={HomePage} />
-            <Route path='/addNew' component={AddNew} />
-            <Route path='/help' component={Help} />
-            <Route path='/routes' component={RoutesList} />
-            <Route path='/route/:routeId' component={RouteItem} />
+            <Route exact path='/addNew' component={AddNew} />
+            <Route exact path='/help' component={Help} />
+            <Route exact path='/route' component={RoutesList} />
+            <Route exact path='/route/byid/:routeId' component={RouteItem} />
             {/* <Route path='/route/byarea/:dc_area' component={} />
             <Route path='/route/bydifficulty/:difficulty' component={} />
             <Route path='/route/bytype/:route_type' component={} /> */}
-            <Route path='/route/:routeId/edit' component={EditForm} />
+            {/* <Route path='/edit/:routeId' component={EditForm} /> */}
           </Switch>
         </main>
         <Footer />
       </div>
       </RouteContext.Provider>
+      </Error>
     )
   }
 }

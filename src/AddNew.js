@@ -1,26 +1,45 @@
 import React, { Component } from 'react'
 import RouteContext from './RouteContext'
 import config from './config'
+import PropTypes from 'prop-types'
 
 export class AddNew extends Component {
+    
     static contextType = RouteContext
 
+    static propTypes = {
+        onSubmit: PropTypes.func,
+        onClick: PropTypes.func,
+        route: PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            route_name: PropTypes.string.isRequired,
+            dc_area: PropTypes.string.isRequired,
+            distance: PropTypes.number.isRequired,
+            difficulty: PropTypes.string.isRequired,
+            route_type: PropTypes.string.isRequired,
+            route_description: PropTypes.string
+        })
+    }
+
     handleClickCancel = () => {
-        this.props.history.push('/routes')
+        this.props.history.push('/route')
 }
 
     render() {
+        console.log('inside add component')
         const handleSubmit = (event) => {
+            event.preventDefault();
             const newRoute = {
                 route_name: event.target['new-route-name'].value,
                 dc_area: event.target['dc_area'].value,
                 distance: event.target['new-route-distance'].value,
                 difficulty: event.target['difficulty'].value,
                 route_type: event.target['type'].value,
-                route_description: event.target['new-route-description'].value
+                route_description: event.target['new-route-description'].value,
+                editable: false
             }
             console.log(newRoute)
-            fetch(`${config.API_ENDPOINT}/routes`, {
+            fetch(`${config.API_ENDPOINT}/route`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -34,7 +53,7 @@ export class AddNew extends Component {
                 })
                 .then(route => {
                     this.context.addRoute(route)
-                    console.log(route)
+                    this.props.history.push(`/route/byid/${route.id}`)
                 })
                 .catch(error => {
                     console.error({error})
@@ -52,26 +71,26 @@ export class AddNew extends Component {
                 id='new-route-name'
                 name='new-route-name' />
                 <br />
-                <select className="filter" size="1">
-                    <option name="dc_area" id="dc_area">DC Area:</option>
-                    <option name="dc_area" id="dc_area" value="Northeast">Northeast</option>
-                    <option name="dc_area" id="dc_area" value="Southeast">Southeast</option>
-                    <option name="dc_area" id="dc_area" value="Northwest">Northwest</option>
-                    <option name="dc_area" id="dc_area" value="Southwest">Southwest</option>
+                <select name="dc_area" id="dc_area">
+                    <option value={null}>DC Area:</option>
+                    <option value="Northeast">Northeast</option>
+                    <option value="Southeast">Southeast</option>
+                    <option value="Northwest">Northwest</option>
+                    <option value="Southwest">Southwest</option>
                 </select>
                 <br />
-                <select className="filter" size="1">
-                    <option name="difficulty" id="difficulty">Difficulty:</option>
-                    <option name="difficulty" id="difficulty" value="Low">Low</option>
-                    <option name="difficulty" id="difficulty" value="Medium">Medium</option>
-                    <option name="difficulty" id="difficulty" value="High">High</option>
+                <select name="difficulty" id="difficulty">
+                    <option value={null}>Difficulty:</option>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
                 </select>
                 <br />
-                <select className="filter" size="1">
-                    <option name="type" id="type">Type:</option>
-                    <option name="type" id="type" value="City Streets">City Streets</option>
-                    <option name="type" id="type" value="Residential">Residential</option>
-                    <option name="type" id="type" value="Trail/Path">Trail/Path</option>
+                <select name="type" id="type">
+                    <option value={null}>Type:</option>
+                    <option value="City Streets">City Streets</option>
+                    <option value="Residential">Residential</option>
+                    <option value="Trail/Path">Trail/Path</option>
                 </select>
                 <br />
                 <label htmlFor="new-route-distance">Distance</label>

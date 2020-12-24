@@ -7,7 +7,7 @@ export class Nav extends Component {
         return (
             <ul>
                 <Link 
-                    to='/routes' 
+                    to='/route' 
                     style={{textDecoration: 'none', color: 'inherit'}}>
                     <li>_routes</li>
                 </Link>

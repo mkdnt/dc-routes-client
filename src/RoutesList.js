@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import RouteContext from './RouteContext'
 import Route from './Route'
 import Filters from './Filters'
+import PropTypes from 'prop-types'
+
 
 export class RoutesList extends Component {
     static defaultProps = {
@@ -9,11 +11,23 @@ export class RoutesList extends Component {
             params: {}
         }
     }
-    
+
+    static propTypes = {
+        route: PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            route_name: PropTypes.string.isRequired,
+            dc_area: PropTypes.string.isRequired,
+            distance: PropTypes.number.isRequired,
+            difficulty: PropTypes.string.isRequired,
+            route_type: PropTypes.string.isRequired,
+            route_description: PropTypes.string
+        })
+    }
+   
     static contextType = RouteContext;
 
     render() {
-
+        console.log(this.context.routes)
         return (
             <div>
                 <h2>Routes</h2>
