@@ -66,6 +66,14 @@ export class App extends Component {
     })
   }
 
+  handleEditRoute = editedRoute => {
+    this.setState({
+      routes: this.state.routes.map(route =>
+        (route.id !== editedRoute.id) ? route : editedRoute
+        )
+    })
+  }
+
 
   render() {
     const value = {
