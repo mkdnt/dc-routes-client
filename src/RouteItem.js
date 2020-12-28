@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import RouteContext from './RouteContext'
-import Route from './Route'
+import { Link } from 'react-router-dom'
 import config from './config'
 import PropTypes from 'prop-types'
 
@@ -44,6 +44,7 @@ export class RouteItem extends Component {
         }
 
     render() {
+        const { id, name, area, distance, type, difficulty, description } = this.props
         console.log('inside RouteItem component')
         const { routes } = this.context
         const { routeId } = this.props.match.params
@@ -111,15 +112,15 @@ export class RouteItem extends Component {
             return (
             
             <div>
-                <Route 
-                    id={route.id}
-                    name={route.route_name}
-                    area={route.dc_area}
-                    distance={route.distance}
-                    difficulty={route.difficulty}
-                    type={route.route_type}
-                    description={route.route_description}
-                />
+                <Link 
+                to={`/route/byid/${id}`}>
+                <h4>{name}</h4>
+                </Link>
+                <h5>{area}</h5>
+                <h5>{distance} miles</h5>
+                <h5>{difficulty}</h5>
+                <h5>{type}</h5>
+                <h5>{description}</h5>
                 <button onClick={this.handleEdit}>Edit</button>
                 <button type='button' onClick={handleClickDelete}>Delete</button>
             </div>

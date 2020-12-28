@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import RouteContext from './RouteContext'
-import Route from './Route'
+import RouteItem from './RouteItem'
 import PropTypes from 'prop-types'
 
 
@@ -103,7 +103,7 @@ export class RoutesList extends Component {
                 <ul>
                     {filteredRoutes.map(route => 
                     <li key={route.id}>
-                        <Route 
+                        <RouteItem 
                         id={route.id}
                         name={route.route_name}
                         area={route.dc_area}
@@ -120,7 +120,7 @@ export class RoutesList extends Component {
                 <ul>
                     {filteredRoutes.map(route => 
                     <li key={route.id}>
-                        <Route 
+                        <RouteItem 
                         id={route.id}
                         name={route.route_name}
                         area={route.dc_area}
