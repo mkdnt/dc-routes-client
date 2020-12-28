@@ -5,10 +5,7 @@ import PropTypes from 'prop-types'
 
 
 export class Route extends Component {
-    static defaultProps ={
-        onDeleteNote: () => {}
-    }
-
+    
     static propTypes = {
         route: PropTypes.shape({
             id: PropTypes.number.isRequired,

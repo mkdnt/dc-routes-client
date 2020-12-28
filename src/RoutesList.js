@@ -8,7 +8,6 @@ export class RoutesList extends Component {
     constructor(props){
         super(props)
         this.state = {
-            filter: false,
             useFilter: false,
             filteredProps: {}
         }
@@ -51,12 +50,30 @@ export class RoutesList extends Component {
         })
     }
 
-    const filteredRoutes = this.context.routes.filter(route => route.dc_area === (this.state.filteredProps.dc_area || null) && route.difficulty === (this.state.filteredProps.difficulty || null) && route.route_type === (this.state.filteredProps.route_type || null))
+    const handleResetFilter = () => {
+        this.setState({
+            useFilter: false,
+            filteredProps: {}
+        })
+    }
+    
+
+    const filteredRoutes = this.context.routes.filter(route =>
+        (this.state.filteredProps.dc_area ? route.dc_area === this.state.filteredProps.dc_area : this.context.routes) ||
+        (this.state.filteredProps.difficulty ? route.difficulty === this.state.filteredProps.difficulty : this.context.routes) ||
+        (this.state.filteredProps.route_type ? route.route_type === this.state.filteredProps.route_type : this.context.routes)
+    )
+    
+    // .filter(route => route.dc_area === (this.state.filteredProps.dc_area || null) && route.difficulty === (this.state.filteredProps.difficulty || null) && route.route_type === (this.state.filteredProps.route_type || null))
+
+
+    // console.log(filteredRoutes)
+    console.log(this.context.routes)
+    console.log("in RoutesList component")
         return (
             <div>
                 <h2>Routes</h2>
-                {!this.state.filter && <button onClick={this.handleFilters}>Filters</button>}
-                {this.state.filter && 
+                {!this.state.useFilter &&
                 <div>
                 <form onSubmit={handleSetFilter}>
                 <select name="dc_area" id="dc_area">
@@ -82,24 +99,7 @@ export class RoutesList extends Component {
                 </select>
                 <button>Set Filter</button>
                 </form>
-                </div>
-                }
-                {!this.state.useFilter && 
-                <ul>
-                    {this.context.routes.map(route =>
-                        <li key={route.id}>
-                        <Route 
-                        id={route.id}
-                        name={route.route_name}
-                        area={route.dc_area}
-                        distance={route.distance}
-                        type={route.route_type}
-                        />
-                    </li>
-                        
-                    )}
-                </ul>}
-                {this.state.useFilter &&
+                
                 <ul>
                     {filteredRoutes.map(route => 
                     <li key={route.id}>
@@ -111,7 +111,26 @@ export class RoutesList extends Component {
                         type={route.route_type}
                         />
                     </li>)}
-                </ul>}
+                </ul>
+                </div>
+    }
+                {this.state.useFilter &&
+                <div>
+                 <button onClick={handleResetFilter}>Reset Filter</button>   
+                <ul>
+                    {filteredRoutes.map(route => 
+                    <li key={route.id}>
+                        <Route 
+                        id={route.id}
+                        name={route.route_name}
+                        area={route.dc_area}
+                        distance={route.distance}
+                        type={route.route_type}
+                        />
+                    </li>)}
+                </ul>
+                </div>}
+    
             </div>
         )
     }

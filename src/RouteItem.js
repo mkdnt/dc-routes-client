@@ -33,7 +33,23 @@ export class RouteItem extends Component {
     
     static contextType = RouteContext;
 
-    handleClickDelete = event => {
+    
+
+    handleEdit = () => {
+            this.setState({editing: true})
+        }
+
+    handleClickCancel = () => {
+            this.props.history.push(`/route`)
+        }
+
+    render() {
+        console.log('inside RouteItem component')
+        const { routes } = this.context
+        const { routeId } = this.props.match.params
+        const route = routes.find(route => route.id === Number(routeId))
+
+        const handleClickDelete = event => {
             event.preventDefault();
             const {routeId} = this.props.match.params
 
@@ -51,26 +67,12 @@ export class RouteItem extends Component {
             })
             .then((routeId) => {
                 this.context.deleteRoute(routeId)
-                this.props.history.push('/route')
+                
             })
             .catch(error => {
                 console.error({error})
             })
         }
-
-    handleEdit = () => {
-            this.setState({editing: true})
-        }
-
-        handleClickCancel = () => {
-            this.props.history.push(`/route`)
-        }
-
-    render() {
-        console.log('inside RouteItem component')
-        const { routes } = this.context
-        const { routeId } = this.props.match.params
-        const route = routes.find(route => route.id === Number(routeId))
         
 
         const handleSubmit = event => {
@@ -119,7 +121,7 @@ export class RouteItem extends Component {
                     description={route.route_description}
                 />
                 <button onClick={this.handleEdit}>Edit</button>
-                <button type='button' onClick={this.handleClickDelete}>Delete</button>
+                <button type='button' onClick={handleClickDelete}>Delete</button>
             </div>
         )
         }
