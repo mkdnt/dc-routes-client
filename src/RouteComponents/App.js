@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import RouteContext from './RouteContext';
 import {Route, Switch} from 'react-router-dom';
-import config from './config';
-import Header from './Header'
-import Nav from './Nav'
+import config from '../System/config';
+import Header from '../Navigation/Header'
+import Nav from '../Navigation/Nav'
 import HomePage from './HomePage'
 import AddNew from './AddNew'
-import Help from './Help'
+import Help from '../RouteComponents/Help'
 import RoutesList from './RoutesList'
 import RouteItem from './RouteItem'
-import Footer from './Footer'
+import Footer from '../Navigation/Footer'
 import './App.css'
-import Error from './Error'
+import Error from '../System/Error'
 
 export class App extends Component {
   state = {
@@ -59,19 +59,20 @@ export class App extends Component {
   }
 
   handleDeleteRoute = routeId => {
-    console.log('inside deleteRoute')
-    const newRoutes = this.state.routes.filter(route => route.id !== routeId)
+    const newRoutes = this.state.routes.filter(route => route.id != routeId)
     this.setState({
       routes: newRoutes
     })
   }
 
   handleEditRoute = editedRoute => {
+    console.log(editedRoute)
     this.setState({
       routes: this.state.routes.map(route =>
-        (route.id !== editedRoute.id) ? route : editedRoute
+        (route.id != editedRoute.id) ? route : editedRoute
         )
     })
+    console.log(this.state.routes)
   }
 
 

@@ -12,6 +12,7 @@ export class RoutesList extends Component {
             filteredProps: {}
         }
     }
+
     static defaultProps = {
         match: {
             params: {}
@@ -32,21 +33,18 @@ export class RoutesList extends Component {
    
     static contextType = RouteContext;
 
-    handleFilters = () => {
-        this.setState({filter: true})
-    }
+    
 
     render() {
-      const handleSetFilter = (event) => {
+    const handleSetFilter = (event) => {
         event.preventDefault()
-        console.log(event.target['dc_area'].value)
         this.setState({
-        filteredProps: {
-            dc_area: event.target['dc_area'].value,
-            difficulty: event.target['difficulty'].value,
-            route_type: event.target['type'].value
-        },
-        useFilter: true
+            filteredProps: {
+                dc_area: event.target['dc_area'].value,
+                difficulty: event.target['difficulty'].value,
+                route_type: event.target['type'].value
+            },
+            useFilter: true
         })
     }
 
@@ -56,20 +54,28 @@ export class RoutesList extends Component {
             filteredProps: {}
         })
     }
+
     
 
-    const filteredRoutes = this.context.routes.filter(route =>
-        (this.state.filteredProps.dc_area ? route.dc_area === this.state.filteredProps.dc_area : this.context.routes) ||
-        (this.state.filteredProps.difficulty ? route.difficulty === this.state.filteredProps.difficulty : this.context.routes) ||
-        (this.state.filteredProps.route_type ? route.route_type === this.state.filteredProps.route_type : this.context.routes)
-    )
+    // const filteredRoutes = this.context.routes.filter(route =>
+    //     ((route.dc_area === this.filteredProps.dc_area || undefined) && (route.difficulty === this.filteredProps.difficulty || undefined) && (route.route_type === this.filteredProps.route_type || undefined)) ? route : this.context.routes
+    // )
     
-    // .filter(route => route.dc_area === (this.state.filteredProps.dc_area || null) && route.difficulty === (this.state.filteredProps.difficulty || null) && route.route_type === (this.state.filteredProps.route_type || null))
+    // const filteredRoutes = this.context.routes.filter(route => 
+    //         this.state.filteredProps.dc_area ? route.dc_area === this.state.filteredProps.dc_area : this.context.routes
+    //     )
 
+    // const filteredAreas = filteredRoutes.filter(route => 
+    //     route.dc_area.toLowerCase().includes(this.state.filteredProps.dc_area)
+    // )
+    // const filteredDifficulty = filteredRoutes.filter(route => 
+    //     this.state.filteredProps.difficulty ? route.difficulty === this.state.filteredProps.difficulty : filteredRoutes
+    // )
+    // const filteredType = filteredRoutes.filter(route => 
+    //     this.state.filteredProps.route_type ? route.route_type === this.state.filteredProps.route_type : filteredRoutes
+    // )
 
-    // console.log(filteredRoutes)
-    console.log(this.context.routes)
-    console.log("in RoutesList component")
+    
         return (
             <div>
                 <h2>Routes</h2>
@@ -101,7 +107,7 @@ export class RoutesList extends Component {
                 </form>
                 
                 <ul>
-                    {filteredRoutes.map(route => 
+                    {this.context.routes.map(route => 
                     <li key={route.id}>
                         <Route 
                         id={route.id}
@@ -118,7 +124,7 @@ export class RoutesList extends Component {
                 <div>
                  <button onClick={handleResetFilter}>Reset Filter</button>   
                 <ul>
-                    {filteredRoutes.map(route => 
+                    {this.context.routes.map(route => 
                     <li key={route.id}>
                         <Route 
                         id={route.id}
