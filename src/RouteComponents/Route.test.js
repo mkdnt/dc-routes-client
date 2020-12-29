@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
-import App from './App';
+import Route from './Route';
 
-describe('App Component', () => {
+describe('Route Component', () => {
   describe('Smoke test', () => {
     it('Renders without crashing', () => {
       const div = document.createElement('div');
       ReactDOM.render(
         <BrowserRouter>
-            <App />
+            <Route />
         </BrowserRouter>,
       div);
       ReactDOM.unmountComponentAtNode(div);
