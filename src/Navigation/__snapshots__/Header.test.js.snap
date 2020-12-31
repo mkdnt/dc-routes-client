@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Component Snapshot renders the UI as expected 1`] = `
+<div
+  className="header"
+>
+  <a
+    href="/"
+    onClick={[Function]}
+    style={
+      Object {
+        "color": "inherit",
+        "textDecoration": "none",
+      }
+    }
+  >
+    <h1>
+      dc_routes
+    </h1>
+  </a>
+</div>
+`;

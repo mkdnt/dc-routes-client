@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import RouteContext from './RouteContext'
 import Route from './Route'
-import config from '../System/config'
+import api from '../System/config'
 import PropTypes from 'prop-types'
 import ValidationError from '../System/ValidationError'
 
@@ -168,10 +168,11 @@ export class RouteItem extends Component {
             event.preventDefault();
             const {routeId} = this.props.match.params
 
-            fetch(`${config.API_ENDPOINT}/route/byid/${routeId}`, {
+            fetch(`${api.API_ENDPOINT}/route/byid/${routeId}`, {
                 method: 'DELETE',
                 headers: {
-                    'content-type': 'application/json'
+                    'content-type': 'application/json',
+                    'Authorization': `Bearer ${api.API_KEY}`
                 },
             })
             // .then(res => {
@@ -202,10 +203,11 @@ export class RouteItem extends Component {
                 route_description: event.target['new-route-description'].value
             }
 
-            fetch(`${config.API_ENDPOINT}/route/byid/${routeId}`, {
+            fetch(`${api.API_ENDPOINT}/route/byid/${routeId}`, {
                 method: 'PATCH',
                 headers: {
-                    'content-type': 'application/json'
+                    'content-type': 'application/json',
+                    'Authorization': `Bearer ${api.API_KEY}`
                 },
                 body: JSON.stringify(editedRoute)
             })
@@ -225,7 +227,7 @@ export class RouteItem extends Component {
         if (this.state.editing === false) {
             return (
             
-            <div>
+            <div className='route-card'>
                 <Route 
                     id={route.id}
                     name={route.route_name}
@@ -235,9 +237,9 @@ export class RouteItem extends Component {
                     type={route.route_type}
                     description={route.route_description}
                 />
-                <button onClick={this.handleEdit}>Edit</button>
-                <button type='button' onClick={handleClickDelete}>Delete</button>
-                <button onClick={this.handleBack}>Back</button>
+                <button className='buttons' onClick={this.handleEdit}>Edit</button>
+                <button className='buttons' type='button' onClick={handleClickDelete}>Delete</button>
+                <button className='buttons' onClick={this.handleBack}>Back</button>
             </div>
         )
         }
@@ -248,21 +250,18 @@ export class RouteItem extends Component {
                 <h2>Edit {route.route_name} Route</h2>
         <section className='add-new-form'>
             <form onSubmit={handleSubmit}>
-                <div>
-                <label htmlFor='new-route-name'>Course Name</label>
+                
+                <label htmlFor='new-route-name'>Route Name</label>
                 <input type="text"
                 id='new-route-name'
                 name='new-route-name'
                 defaultValue={route.route_name}
                 onChange={e=> this.updateRouteName(e.target.value)} />
                 {this.state.route_name.touched && <ValidationError message={routeNameError}/>}
-                </div>
-                <br />
-                <div>
-                <select name="dc_area" 
-                id="dc_area" 
-                defaultValue={route.dc_area} 
-                onChange={e=> this.updateDcArea(e.target.value)}>
+                
+                <hr style={{width: '75%', border: ' 1px solid #011328', backgroundColor: '#011328' }}/>
+                
+                <select name="dc_area" id="dc_area" defaultValue={route.dc_area} onChange={e=> this.updateDcArea(e.target.value)}>
                     <option value={null}>DC Area:</option>
                     <option value="Northeast">Northeast</option>
                     <option value="Southeast">Southeast</option>
@@ -270,45 +269,38 @@ export class RouteItem extends Component {
                     <option value="Southwest">Southwest</option>
                 </select>
                 {this.state.dc_area.touched && <ValidationError message={dcAreaError}/>}
-                </div>
-                <br />
-                <div>
-                <select name="difficulty" 
-                id="difficulty"
-                defaultValue={route.difficulty} 
-                onChange={e=> this.updateDifficulty(e.target.value)}>
+                
+                
+                <select name="difficulty" id="difficulty" defaultValue={route.difficulty} onChange={e=> this.updateDifficulty(e.target.value)}>
                     <option value={null}>Difficulty:</option>
                     <option value="Low">Low</option>
                     <option value="Medium">Medium</option>
                     <option value="High">High</option>
                 </select>
                 {this.state.difficulty.touched && <ValidationError message={difficultyError}/>}
-                </div>
-                <br />
-                <div>
-                <select name="type" 
-                id="type" 
-                defaultValue={route.route_type}
-                onChange={e=> this.updateRouteType(e.target.value)}>
+                
+                
+                
+                <select name="type" id="type" defaultValue={route.route_type} onChange={e=> this.updateRouteType(e.target.value)}>
                     <option value={null}>Type:</option>
                     <option value="City Streets">City Streets</option>
                     <option value="Residential">Residential</option>
                     <option value="Trail/Path">Trail/Path</option>
                 </select>
                 {this.state.route_type.touched && <ValidationError message={routeTypeError}/>}
-                </div>
-                <br />
-                <div>
-                <label htmlFor="new-route-distance">Distance</label>
-                <input type="text"
+                
+                <hr style={{width: '75%', border: ' 1px solid #011328', backgroundColor: '#011328' }}/>
+                
+                <label htmlFor="new-route-distance">Distance (miles)</label>
+                <input style={{width: '30px'}}type="text"
                 id='new-route-distance'
                 name='new-route-distance' 
                 defaultValue={route.distance}
                 onChange={e=> this.updateDistance(e.target.value)}/>
                 {this.state.distance.touched && <ValidationError message={distanceError}/>}
-                </div>
-                <br />
-                <div>
+                
+                <hr style={{width: '75%', border: ' 1px solid #011328', backgroundColor: '#011328' }}/>
+                
                 <label htmlFor="">Description</label>
                 <textarea type="text"
                 id='new-route-description'
@@ -316,11 +308,10 @@ export class RouteItem extends Component {
                 defaultValue={route.route_description}
                 onChange={e=> this.updateRouteDescription(e.target.value)}></textarea>
                 {this.state.route_description.touched && <ValidationError message={routeDescriptionError}/>}
-                </div>
+                
                 <br />
-                <button className='buttons'
-                >Submit</button>
-                <button onClick={this.handleClickCancel} className='buttons'>Cancel</button>
+                <button className='buttons'>Submit</button>
+                <button className='buttons' onClick={this.handleClickCancel} className='buttons'>Cancel</button>
             </form>
         </section>
             </div>

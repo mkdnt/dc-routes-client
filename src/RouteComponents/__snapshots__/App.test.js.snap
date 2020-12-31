@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App Component Snapshot renders the UI as expected 1`] = `
+<div
+  className="app"
+>
+  <header>
+    <div
+      className="header"
+    >
+      <a
+        href="/"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "inherit",
+            "textDecoration": "none",
+          }
+        }
+      >
+        <h1>
+          dc_routes
+        </h1>
+      </a>
+    </div>
+  </header>
+  <nav>
+    <ul>
+      <a
+        href="/route"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "inherit",
+            "textDecoration": "none",
+          }
+        }
+      >
+        <li>
+          _routes
+        </li>
+      </a>
+      <a
+        href="/addNew"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "inherit",
+            "textDecoration": "none",
+          }
+        }
+      >
+        <li>
+          _add
+        </li>
+      </a>
+      <a
+        href="/help"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "inherit",
+            "textDecoration": "none",
+          }
+        }
+      >
+        <li>
+          _help
+        </li>
+      </a>
+    </ul>
+  </nav>
+  <main>
+    <div>
+      <h2>
+        let's go!
+      </h2>
+      <p>
+        The app will offer users various running routes in the Washington, DC, area. Users can choose from various criteria for their run (length, area of DC, difficulty) and see routes from the app’s database that match their choices. Additionally, users can submit their own routes to the database, to be viewed and run by other users. The app will serve as a public database of running routes curated by and dedicated to DC runners. The app will save users time that they may waste in trying to plan a run and will motivate them to run more by giving them access to previously-unknown local running hotspots.
+      </p>
+    </div>
+  </main>
+  <div
+    className="footer"
+  >
+    <h1>
+      ★★★
+    </h1>
+  </div>
+</div>
+`;

@@ -17,13 +17,6 @@ export class Nav extends Component {
                     style={{textDecoration: 'none', color: 'inherit'}}>
                     <li>_add</li>
                 </Link>
-
-                <Link 
-                    to='/help' 
-                    style={{textDecoration: 'none', color: 'inherit'}}>
-                    <li>_help</li>
-                </Link>
-
             </ul>
         )
     }

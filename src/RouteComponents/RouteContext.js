@@ -4,6 +4,5 @@ export default React.createContext({
     routes: [],
     addRoute: () => {},
     editRoute: () => {},
-    deleteRoute: () => {},
-    editing: null
+    deleteRoute: () => {}
 })

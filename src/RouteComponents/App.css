@@ -7,12 +7,26 @@ body {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   align-content: center;
   text-align: center;
-  background-color: #faf3dd;
+  background-color: #b40421;
+  color: #011328;
+  text-decoration: none;
 }
 
 main {
-  background-color: #aed9e0;
-  border: solid black 1px;
+  background-color: #fff1e6;
+  border: solid #011328 1px;
   margin: 5px;
   padding: 5px;
+  color: #011328;
+  text-decoration: none;
+}
+
+.buttons {
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  border-radius: 16px;
+  background-color: #b40421;
+  color: #fff1e6;
+  margin: 4px;
+  border: solid 2px #011328;
 }

@@ -1,0 +1,178 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddNew Component Snapshot renders the UI as expected 1`] = `
+<div>
+  <h2>
+    Add New Route
+  </h2>
+  <section
+    className="add-new-form"
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <label
+        htmlFor="new-route-name"
+      >
+        Route Name
+      </label>
+      <input
+        id="new-route-name"
+        name="new-route-name"
+        onChange={[Function]}
+        type="text"
+      />
+      <hr
+        style={
+          Object {
+            "backgroundColor": "#011328",
+            "border": " 1px solid #011328",
+            "width": "75%",
+          }
+        }
+      />
+      <select
+        id="dc_area"
+        name="dc_area"
+        onChange={[Function]}
+      >
+        <option
+          value={null}
+        >
+          DC Area:
+        </option>
+        <option
+          value="Northeast"
+        >
+          Northeast
+        </option>
+        <option
+          value="Southeast"
+        >
+          Southeast
+        </option>
+        <option
+          value="Northwest"
+        >
+          Northwest
+        </option>
+        <option
+          value="Southwest"
+        >
+          Southwest
+        </option>
+      </select>
+      <select
+        id="difficulty"
+        name="difficulty"
+        onChange={[Function]}
+      >
+        <option
+          value={null}
+        >
+          Difficulty:
+        </option>
+        <option
+          value="Low"
+        >
+          Low
+        </option>
+        <option
+          value="Medium"
+        >
+          Medium
+        </option>
+        <option
+          value="High"
+        >
+          High
+        </option>
+      </select>
+      <select
+        id="type"
+        name="type"
+        onChange={[Function]}
+      >
+        <option
+          value={null}
+        >
+          Type:
+        </option>
+        <option
+          value="City Streets"
+        >
+          City Streets
+        </option>
+        <option
+          value="Residential"
+        >
+          Residential
+        </option>
+        <option
+          value="Trail/Path"
+        >
+          Trail/Path
+        </option>
+      </select>
+      <hr
+        style={
+          Object {
+            "backgroundColor": "#011328",
+            "border": " 1px solid #011328",
+            "width": "75%",
+          }
+        }
+      />
+      <label
+        htmlFor="new-route-distance"
+      >
+        Distance (miles)
+      </label>
+      <input
+        id="new-route-distance"
+        name="new-route-distance"
+        onChange={[Function]}
+        style={
+          Object {
+            "width": "30px",
+          }
+        }
+        type="text"
+      />
+      <hr
+        style={
+          Object {
+            "backgroundColor": "#011328",
+            "border": " 1px solid #011328",
+            "width": "75%",
+          }
+        }
+      />
+      <label
+        htmlFor=""
+      >
+        Description
+      </label>
+      <textarea
+        id="new-route-description"
+        name="new-route-description"
+        onChange={[Function]}
+        type="text"
+      />
+      <br />
+      <button
+        className="buttons"
+        disabled="Route Name is required"
+      >
+        Submit
+      </button>
+      <button
+        className="buttons"
+        onClick={[Function]}
+      >
+        Cancel
+      </button>
+    </form>
+  </section>
+</div>
+`;

@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import RouteContext from './RouteContext';
 import {Route, Switch} from 'react-router-dom';
-import config from '../System/config';
+import api from '../System/config';
 import Header from '../Navigation/Header'
 import Nav from '../Navigation/Nav'
 import HomePage from './HomePage'
 import AddNew from './AddNew'
-import Help from '../RouteComponents/Help'
 import RoutesList from './RoutesList'
 import RouteItem from './RouteItem'
 import Footer from '../Navigation/Footer'
@@ -24,10 +23,11 @@ export class App extends Component {
   componentDidMount() {
         console.log('inside ComponentDidMount')
 
-            fetch(`${config.API_ENDPOINT}/route`, {
+            fetch(`${api.API_ENDPOINT}/route`, {
               method: 'GET',
               headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${api.API_KEY}`
               }
             })
             .then(res => {
@@ -98,13 +98,8 @@ export class App extends Component {
           <Switch>
             <Route exact path='/' component={HomePage} />
             <Route exact path='/addNew' component={AddNew} />
-            <Route exact path='/help' component={Help} />
             <Route exact path='/route' component={RoutesList} />
             <Route exact path='/route/byid/:routeId' component={RouteItem} />
-            {/* <Route path='/route/byarea/:dc_area' component={} />
-            <Route path='/route/bydifficulty/:difficulty' component={} />
-            <Route path='/route/bytype/:route_type' component={} /> */}
-            {/* <Route path='/edit/:routeId' component={EditForm} /> */}
           </Switch>
         </main>
         <Footer />

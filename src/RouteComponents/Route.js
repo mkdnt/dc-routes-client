@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import RouteContext from './RouteContext'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import './Route.css'
 
 
 export class Route extends Component {
@@ -23,17 +24,15 @@ export class Route extends Component {
     render() {
         const { id, name, area, distance, type, difficulty, description } = this.props
         return (
-            <div>
+            <div className='route-card'>
                 <Link 
-                to={`/route/byid/${id}`}>
-                <h4>{name}</h4>
+                to={`/route/byid/${id}`}
+                style={{textDecoration: 'none', color: 'inherit'}}>
+                <h3>{name}</h3>
                 </Link>
-                <h5>{area}</h5>
-                <h5>{distance} miles</h5>
-                <h5>{difficulty}</h5>
-                <h5>{type}</h5>
-                <h5>{description}</h5>
-                
+                <h5>{area} | {type}</h5>
+                <h5>{distance} miles | Difficulty: {difficulty}</h5>
+                <p>{description}</p>
             </div>
         )
     }

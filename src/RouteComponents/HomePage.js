@@ -1,11 +1,18 @@
 import React, { Component } from 'react'
 
 export class HomePage extends Component {
+    handleStart = () => {
+        this.props.history.push('/route')
+    }
+
     render() {
         return (
             <div>
                 <h2>let's go!</h2>
-                    <p>The app will offer users various running routes in the Washington, DC, area. Users can choose from various criteria for their run (length, area of DC, difficulty) and see routes from the app’s database that match their choices. Additionally, users can submit their own routes to the database, to be viewed and run by other users. The app will serve as a public database of running routes curated by and dedicated to DC runners. The app will save users time that they may waste in trying to plan a run and will motivate them to run more by giving them access to previously-unknown local running hotspots.</p>            
+                    <p>This app offers various running routes in the Washington, DC, area. Choose which part of DC you want to run in, how far you want to run, or what type of route you want to run.</p>
+                    <p>You can also add your own routes to the list to help expand our database of DC running routes. Feel free to edit your routes if something changes about them or if additional information is necessary.</p>
+                    <p>Click below to see the full list of routes!</p>
+                    <button className='buttons'onClick={this.handleStart}>Get Started</button>            
             </div>
         )
     }

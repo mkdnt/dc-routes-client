@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import RouteContext from './RouteContext'
-import config from '../System/config'
+import api from '../System/config'
 import PropTypes from 'prop-types'
 import ValidationError from '../System/ValidationError'
+import './AddNew.css'
 
 export class AddNew extends Component {
     constructor(props){
@@ -145,10 +146,11 @@ export class AddNew extends Component {
                 editable: false
             }
             console.log(newRoute)
-            fetch(`${config.API_ENDPOINT}/route`, {
+            fetch(`${api.API_ENDPOINT}/route`, {
                 method: 'POST',
                 headers: {
-                    'content-type': 'application/json'
+                    'content-type': 'application/json',
+                    'Authorization': `Bearer ${api.API_KEY}`
                 },
                 body: JSON.stringify(newRoute),
             })
@@ -169,19 +171,19 @@ export class AddNew extends Component {
 
         return (
             <div>
-                <h2>Add New Route</h2>
+                <h1>_add new route</h1>
         <section className='add-new-form'>
             <form onSubmit={handleSubmit}>
-                <div>
-                <label htmlFor='new-route-name'>Course Name</label>
+                
+                <label htmlFor='new-route-name'>Route Name</label>
                 <input type="text"
                 id='new-route-name'
                 name='new-route-name'
                 onChange={e=> this.updateRouteName(e.target.value)} />
                 {this.state.route_name.touched && <ValidationError message={routeNameError}/>}
-                </div>
-                <br />
-                <div>
+                
+                <hr style={{width: '75%', border: ' 1px solid #011328', backgroundColor: '#011328' }}/>
+                
                 <select name="dc_area" id="dc_area" onChange={e=> this.updateDcArea(e.target.value)}>
                     <option value={null}>DC Area:</option>
                     <option value="Northeast">Northeast</option>
@@ -190,9 +192,8 @@ export class AddNew extends Component {
                     <option value="Southwest">Southwest</option>
                 </select>
                 {this.state.dc_area.touched && <ValidationError message={dcAreaError}/>}
-                </div>
-                <br />
-                <div>
+                
+                
                 <select name="difficulty" id="difficulty" onChange={e=> this.updateDifficulty(e.target.value)}>
                     <option value={null}>Difficulty:</option>
                     <option value="Low">Low</option>
@@ -200,9 +201,9 @@ export class AddNew extends Component {
                     <option value="High">High</option>
                 </select>
                 {this.state.difficulty.touched && <ValidationError message={difficultyError}/>}
-                </div>
-                <br />
-                <div>
+                
+                
+                
                 <select name="type" id="type" onChange={e=> this.updateRouteType(e.target.value)}>
                     <option value={null}>Type:</option>
                     <option value="City Streets">City Streets</option>
@@ -210,25 +211,25 @@ export class AddNew extends Component {
                     <option value="Trail/Path">Trail/Path</option>
                 </select>
                 {this.state.route_type.touched && <ValidationError message={routeTypeError}/>}
-                </div>
-                <br />
-                <div>
-                <label htmlFor="new-route-distance">Distance</label>
-                <input type="text"
+                
+                <hr style={{width: '75%', border: ' 1px solid #011328', backgroundColor: '#011328' }}/>
+                
+                <label htmlFor="new-route-distance">Distance (miles)</label>
+                <input style={{width: '30px'}}type="text"
                 id='new-route-distance'
                 name='new-route-distance' 
                 onChange={e=> this.updateDistance(e.target.value)}/>
                 {this.state.distance.touched && <ValidationError message={distanceError}/>}
-                </div>
-                <br />
-                <div>
+                
+                <hr style={{width: '75%', border: ' 1px solid #011328', backgroundColor: '#011328' }}/>
+                
                 <label htmlFor="">Description</label>
                 <textarea type="text"
                 id='new-route-description'
                 name='new-route-description'
                 onChange={e=> this.updateRouteDescription(e.target.value)}></textarea>
                 {this.state.route_description.touched && <ValidationError message={routeDescriptionError}/>}
-                </div>
+                
                 <br />
                 <button className='buttons'
                 disabled={
@@ -240,7 +241,7 @@ export class AddNew extends Component {
                     this.validateRouteDescription()
                 }
                 >Submit</button>
-                <button onClick={this.handleClickCancel} className='buttons'>Cancel</button>
+                <button className='buttons' onClick={this.handleClickCancel} className='buttons'>Cancel</button>
             </form>
         </section>
             </div>

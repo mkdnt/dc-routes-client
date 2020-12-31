@@ -2,8 +2,8 @@ nav {
   display: flex;
   justify-content: center;
   margin: 5px;
-  background-color: #b8f2e6;
-  border: solid black 1px;
+  background-color: #fff1e6;
+  border: solid #011328 1px;
 }
 
 nav ul {
