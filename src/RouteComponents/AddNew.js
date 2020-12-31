@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import RouteContext from './RouteContext'
-import api from '../System/config'
+import api from '../config'
 import PropTypes from 'prop-types'
-import ValidationError from '../System/ValidationError'
+import ValidationError from '../ValidationError'
 import './AddNew.css'
 
 export class AddNew extends Component {
@@ -55,6 +55,8 @@ export class AddNew extends Component {
     handleClickCancel = () => {
         this.props.history.push('/route')
     }
+
+    //validate all form information
 
     updateRouteName(name) {
         this.setState({route_name: {value: name, touched: true}})
@@ -145,7 +147,7 @@ export class AddNew extends Component {
                 route_description: event.target['new-route-description'].value,
                 editable: false
             }
-            console.log(newRoute)
+
             fetch(`${api.API_ENDPOINT}/route`, {
                 method: 'POST',
                 headers: {
@@ -166,7 +168,6 @@ export class AddNew extends Component {
                 .catch(error => {
                     console.error({error})
                 })
-                //error message here, not console
         }
 
         return (

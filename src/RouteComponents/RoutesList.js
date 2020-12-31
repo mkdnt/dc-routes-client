@@ -37,12 +37,16 @@ export class RoutesList extends Component {
     static contextType = RouteContext;
 
     render() {
+    
+    //create arrays to use for filtering DISTANCE
 
     const oneThroughFive = Array.from(new Array(5), (x, i) => i + 1)
     const sixThroughTen = Array.from(new Array(5), (x, i) => i + 6)
     const elevenThroughFifteen = Array.from(new Array(5), (x, i) => i + 11)
     const sixteenThroughTwenty = Array.from(new Array(5), (x, i) => i + 16)
     const twentyOnePlus = Array.from(new Array(500), (x, i) => i + 21)
+
+    //functions to update filters onChange 
 
     const updateDcArea = (area) => {
             this.setState({
@@ -103,11 +107,16 @@ export class RoutesList extends Component {
         })
     }
 
+    //first sort the routes alphabetically
+    //routes taken from context to begin
+
     const sortedRoutes = this.context.routes.sort((a,b) => {
         if(a.route_name < b.route_name) {return -1}
         if(a.route_name > b.route_name) {return 1}
         return 0;
     })
+
+    //then filter the sorted routes (defaulted to ALL, or no filter)
 
     const filteredRoutes = sortedRoutes.filter(route =>
         (route.dc_area === this.state.filteredProps.dc_area 

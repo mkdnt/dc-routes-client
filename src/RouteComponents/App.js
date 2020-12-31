@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import RouteContext from './RouteContext';
 import {Route, Switch} from 'react-router-dom';
-import api from '../System/config';
+import api from '../config';
 import Header from '../Navigation/Header'
 import Nav from '../Navigation/Nav'
 import HomePage from './HomePage'
@@ -10,7 +10,7 @@ import RoutesList from './RoutesList'
 import RouteItem from './RouteItem'
 import Footer from '../Navigation/Footer'
 import './App.css'
-import Error from '../System/Error'
+import Error from '../Error'
 
 export class App extends Component {
   state = {
@@ -21,7 +21,6 @@ export class App extends Component {
   };
 
   componentDidMount() {
-        console.log('inside ComponentDidMount')
 
             fetch(`${api.API_ENDPOINT}/route`, {
               method: 'GET',
@@ -66,13 +65,11 @@ export class App extends Component {
   }
 
   handleEditRoute = editedRoute => {
-    console.log(editedRoute)
     this.setState({
       routes: this.state.routes.map(route =>
         (route.id != editedRoute.id) ? route : editedRoute
         )
     })
-    console.log(this.state.routes)
   }
 
 

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import RouteContext from './RouteContext'
 import Route from './Route'
-import api from '../System/config'
+import api from '../config'
 import PropTypes from 'prop-types'
-import ValidationError from '../System/ValidationError'
+import ValidationError from '../ValidationError'
 
 export class RouteItem extends Component {
     constructor(props) {
@@ -58,7 +58,7 @@ export class RouteItem extends Component {
     
     static contextType = RouteContext;
 
-    
+    //handlers for buttons and movement
 
     handleEdit = () => {
             this.setState({
@@ -73,6 +73,8 @@ export class RouteItem extends Component {
     handleBack = () => {
         this.props.history.push('/route')
     }
+
+    //functions for validation of EDIT form
 
     updateRouteName(name) {
         this.setState({route_name: {value: name, touched: true}})
@@ -224,6 +226,8 @@ export class RouteItem extends Component {
             })
         }
 
+        //ROUTE component displays route information as default
+
         if (this.state.editing === false) {
             return (
             
@@ -243,6 +247,8 @@ export class RouteItem extends Component {
             </div>
         )
         }
+
+        //edit button is touched and state is changed, form is displayed with route info pre-filled as defaultValue (form is same as AddNew except for defaultValues)
         
         else {
             return (

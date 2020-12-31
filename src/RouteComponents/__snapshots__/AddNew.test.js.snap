@@ -2,9 +2,9 @@
 
 exports[`AddNew Component Snapshot renders the UI as expected 1`] = `
 <div>
-  <h2>
-    Add New Route
-  </h2>
+  <h1>
+    _add new route
+  </h1>
   <section
     className="add-new-form"
   >

@@ -15,5 +15,6 @@ code {
 @media screen and (max-width: 600px) {
   body {
     width: fit-content;
+    text-align: center;
   }
 }

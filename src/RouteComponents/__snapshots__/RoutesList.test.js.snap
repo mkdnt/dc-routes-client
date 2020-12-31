@@ -8,9 +8,9 @@ exports[`RoutesList Component Snapshot renders the UI as expected 1`] = `
     }
   }
 >
-  <h2>
-    Routes
-  </h2>
+  <h1>
+    _routes
+  </h1>
   <div>
     <form>
       <select

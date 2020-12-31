@@ -1,3 +1,5 @@
+/* mobile view first */
+
 body {
   max-width: 400px;
   display: flex;
@@ -29,4 +31,13 @@ main {
   color: #fff1e6;
   margin: 4px;
   border: solid 2px #011328;
+}
+
+/* desktop */
+@media all and (min-width: 600px) {
+  body {
+    max-width: 600px;
+    justify-content: center;
+    margin: 0 auto;
+  }
 }
