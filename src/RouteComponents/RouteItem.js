@@ -177,12 +177,6 @@ export class RouteItem extends Component {
           Authorization: `Bearer ${api.API_KEY}`,
         },
       })
-        // .then(res => {
-        //     if (!res.ok)
-        //         return res.json().then(e => Promise.reject(e))
-        //     return res.json()
-
-        // })
         .then(() => {
           this.props.history.push(`/route`);
           this.context.deleteRoute(routeId);
@@ -212,10 +206,6 @@ export class RouteItem extends Component {
         },
         body: JSON.stringify(editedRoute),
       })
-        // .then(res => {
-        //     if (!res.ok)
-        //         return res.json().then(e => Promise.reject(e))
-        // })
         .then(() => {
           this.context.editRoute(editedRoute);
           this.setState({ editing: false });

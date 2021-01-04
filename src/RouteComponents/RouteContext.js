@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 export default React.createContext({
-    routes: [],
-    addRoute: () => {},
-    editRoute: () => {},
-    deleteRoute: () => {}
-})
+  routes: [],
+  addRoute: () => {},
+  editRoute: () => {},
+  deleteRoute: () => {},
+});
