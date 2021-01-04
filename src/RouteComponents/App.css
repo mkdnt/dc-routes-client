@@ -17,8 +17,8 @@ body {
 main {
   background-color: #fff1e6;
   border: solid #011328 1px;
-  margin: 5px;
-  padding: 5px;
+  margin: 5px 0 5px 0;
+  padding: 10px;
   color: #011328;
   text-decoration: none;
 }
@@ -36,8 +36,12 @@ main {
 /* desktop */
 @media all and (min-width: 600px) {
   body {
-    max-width: 600px;
+    max-width: 90%;
     justify-content: center;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 }

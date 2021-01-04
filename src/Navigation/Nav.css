@@ -1,7 +1,7 @@
 nav {
   display: flex;
   justify-content: center;
-  margin: 5px;
+  margin: 5px 0 5px 0;
   background-color: #fff1e6;
   border: solid #011328 1px;
 }

@@ -264,9 +264,8 @@ export class AddNew extends Component {
               }}
             />
 
-            <label htmlFor="">Description</label>
+            <label htmlFor="new-route-description">Description</label>
             <textarea
-              type="text"
               id="new-route-description"
               name="new-route-description"
               onChange={(e) => this.updateRouteDescription(e.target.value)}

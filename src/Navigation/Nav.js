@@ -1,25 +1,31 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import './Nav.css'
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "./Nav.css";
 
 export class Nav extends Component {
-    render() {
-        return (
-            <ul>
-                <Link 
-                    to='/route' 
-                    style={{textDecoration: 'none', color: 'inherit'}}>
-                    <li>_routes</li>
-                </Link>
+  render() {
+    return (
+      <ul>
+        <li>
+          <Link
+            to="/route"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            _routes
+          </Link>
+        </li>
 
-                <Link 
-                    to='/addNew' 
-                    style={{textDecoration: 'none', color: 'inherit'}}>
-                    <li>_add</li>
-                </Link>
-            </ul>
-        )
-    }
+        <li>
+          <Link
+            to="/addNew"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            _add
+          </Link>
+        </li>
+      </ul>
+    );
+  }
 }
 
-export default Nav
+export default Nav;
